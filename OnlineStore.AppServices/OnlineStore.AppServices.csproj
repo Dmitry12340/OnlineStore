@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Models\" />
+    <Folder Include="Common\Repositories\" />
+    <Folder Include="Common\Services\" />
+    <Folder Include="Common\UseCases\" />
+    <Folder Include="Orders\Models\" />
+    <Folder Include="Orders\UseCases\" />
+    <Folder Include="Orders\Services\" />
+    <Folder Include="Orders\Repositories\" />
+    <Folder Include="Users\Models\" />
+    <Folder Include="Users\Repositories\" />
+    <Folder Include="Users\Services\" />
+    <Folder Include="Users\UseCases\" />
+  </ItemGroup>
+
 </Project>

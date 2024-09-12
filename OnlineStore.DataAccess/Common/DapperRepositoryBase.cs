@@ -21,7 +21,11 @@ namespace OnlineStore.DataAccess.Common
 
         public Task<T> GetAsync(int id)
         {
-            return _connection.QuerySingleOrDefaultAsync<T>($"SELECT * FROM {typeof(T).Name}s where id = {id}");
+            using (var connection = _connection)
+            {
+                var queryString = $"SELECT * FROM {typeof(T).Name}s where id = @Id";
+                return _connection.QuerySingleOrDefaultAsync<T>(queryString, new { Id = id });
+            }
         }
     }
 }

@@ -1,3 +1,6 @@
+using OnlineStore.AppServices.Attributes.Repositories;
+using OnlineStore.DataAccess.Attributes.Repositories;
+
 namespace OnlineStore.MVC
 {
     public class Program
@@ -8,6 +11,8 @@ namespace OnlineStore.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IAttributesRepository, AttributesRepository>();
 
             var app = builder.Build();
 

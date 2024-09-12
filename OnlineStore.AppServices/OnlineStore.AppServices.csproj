@@ -7,10 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Models\" />
-    <Folder Include="Common\Repositories\" />
-    <Folder Include="Common\Services\" />
-    <Folder Include="Common\UseCases\" />
+    <Folder Include="Attributes\Model\" />
+    <Folder Include="Attributes\Services\" />
     <Folder Include="Orders\Models\" />
     <Folder Include="Orders\UseCases\" />
     <Folder Include="Orders\Services\" />

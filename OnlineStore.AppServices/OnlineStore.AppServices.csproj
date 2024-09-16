@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Attributes\Model\" />
-    <Folder Include="Attributes\Services\" />
     <Folder Include="Orders\Models\" />
     <Folder Include="Orders\UseCases\" />
     <Folder Include="Orders\Services\" />
@@ -17,6 +15,15 @@
     <Folder Include="Users\Repositories\" />
     <Folder Include="Users\Services\" />
     <Folder Include="Users\UseCases\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineStore.Contracts\OnlineStore.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

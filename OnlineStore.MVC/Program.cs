@@ -1,6 +1,5 @@
 using OnlineStore.ComponentRegistar;
 using StackExchange.Redis;
-using StackExchange.Redis.Extensions.Core.Abstractions;
 
 namespace OnlineStore.MVC
 {

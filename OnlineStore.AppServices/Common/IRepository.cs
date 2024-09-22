@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineStore.AppServices.Common
+﻿namespace OnlineStore.AppServices.Common
 {
     /// <summary>
     /// Интерфейс общего репозитория.
@@ -18,9 +12,15 @@ namespace OnlineStore.AppServices.Common
         Task<T> GetAsync(int id);
 
         /// <summary>
-        /// Добавляет переданную сущность.
+        /// Добавляет сущность в БД.
         /// </summary>
         /// <param name="entity">Сущность.</param>
         Task AddAsync(T entity);
+
+        /// <summary>
+        /// Получает все записи.
+        /// </summary>
+        /// <returns></returns>
+        //Task<List<T>> GetAllAsync();
     }
 }

@@ -6,6 +6,7 @@ using OnlineStore.AppServices.Attributes.Repositories;
 using OnlineStore.AppServices.Attributes.Services;
 using OnlineStore.AppServices.Common.Redis;
 using OnlineStore.DataAccess.Attributes.Repositories;
+using OnlineStore.DataAccess.Common;
 using OnlineStore.Infrastructure.Mappings;
 
 namespace OnlineStore.ComponentRegistar
@@ -24,11 +25,11 @@ namespace OnlineStore.ComponentRegistar
 
         private static void RegisterRepositories(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddScoped<DbContext>(p =>
-            {
-                string? connection = configuration.GetConnectionString("DefaultConnection");
-                return new DbContext(connection);
-            });
+            var connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            services.AddDbContext<OnlineStoreDbContex>(options =>
+                options.UseNpgsql(connectionString));
+
 
             services.AddTransient<IAttributesRepository, AttributesRepository>();
         }

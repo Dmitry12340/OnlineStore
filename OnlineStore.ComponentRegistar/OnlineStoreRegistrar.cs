@@ -2,11 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OnlineStore.AppServices.Attributes.Repositories;
-using OnlineStore.AppServices.Attributes.Services;
 using OnlineStore.AppServices.Common.Redis;
-using OnlineStore.DataAccess.Attributes.Repositories;
 using OnlineStore.DataAccess.Common;
+using OnlineStore.Domain.Entities;
 using OnlineStore.Infrastructure.Mappings;
 
 namespace OnlineStore.ComponentRegistar
@@ -18,6 +16,11 @@ namespace OnlineStore.ComponentRegistar
     {
         public static void AddComponents(IServiceCollection services, IConfiguration configuration)
         {
+            //services.AddIdentity<ApplicationUser, ApplicationRole>()
+            //    .AddEntityFrameworkStores(OnlineStoreDbContex)
+            //    .AddDefaultTokenProviders();
+
+
             RegisterRepositories(services, configuration);
             RegisterServices(services);
             RegisterMapper(services, configuration);
@@ -29,14 +32,10 @@ namespace OnlineStore.ComponentRegistar
 
             services.AddDbContext<OnlineStoreDbContex>(options =>
                 options.UseNpgsql(connectionString));
-
-
-            services.AddTransient<IAttributesRepository, AttributesRepository>();
         }
 
         private static void RegisterServices(IServiceCollection services)
         {
-            services.AddScoped<IProductAttributeService, ProductAttributeService>();
 
             services.AddScoped<IRedisCache, RedisCache>();
         }

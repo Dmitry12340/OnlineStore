@@ -31,6 +31,11 @@ namespace OnlineStore.Domain.Entities
         public bool IsDeleted { get; set; }
 
         /// <summary>
+        /// Категория продукта.
+        /// </summary>
+        public string Category {  get; set; }
+
+        /// <summary>
         /// Изображения товара.
         /// </summary>
         //public ICollection<ProductImage> Images { get; set; } = [];

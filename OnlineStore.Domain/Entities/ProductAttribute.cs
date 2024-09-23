@@ -7,7 +7,6 @@ namespace OnlineStore.Domain.Entities
     /// <summary>
     /// Аттрибут товара.
     /// </summary>
-    [Table("attributes")]
     public class ProductAttribute
     {
         public object name;
@@ -15,14 +14,11 @@ namespace OnlineStore.Domain.Entities
         /// <summary>
         /// Идентификатор.
         /// </summary>
-        [Key]
-        [Column("id")]
         public int Id { get; set; }
 
         /// <summary>
         /// Наименование.
         /// </summary>
-        [Column("name")]
         public string Name { get; set; } = default!;
     }
 }

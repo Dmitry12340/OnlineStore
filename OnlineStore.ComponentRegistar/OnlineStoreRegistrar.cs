@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OnlineStore.AppServices.Authentication.Services;
 using OnlineStore.AppServices.Common.Redis;
 using OnlineStore.DataAccess.Common;
 using OnlineStore.Domain.Entities;
@@ -16,9 +18,9 @@ namespace OnlineStore.ComponentRegistar
     {
         public static void AddComponents(IServiceCollection services, IConfiguration configuration)
         {
-            //services.AddIdentity<ApplicationUser, ApplicationRole>()
-            //    .AddEntityFrameworkStores(OnlineStoreDbContex)
-            //    .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<OnlineStoreDbContex>()
+                .AddDefaultTokenProviders();
 
 
             RegisterRepositories(services, configuration);
@@ -38,6 +40,8 @@ namespace OnlineStore.ComponentRegistar
         {
 
             services.AddScoped<IRedisCache, RedisCache>();
+
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
         }
 
         private static void RegisterMapper(IServiceCollection services, IConfiguration configuration)

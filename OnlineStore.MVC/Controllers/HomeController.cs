@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineStore.Domain.Entities;
 using OnlineStore.MVC.Models;
 using System.Diagnostics;
 
@@ -15,9 +17,14 @@ namespace OnlineStore.MVC.Controllers
 
         public async Task<IActionResult> Index()
         {
+            var user1 = new ApplicationUser();
+
             return View();
+
+            
         }
 
+        [Authorize]
         public IActionResult Privacy()
         {
             return View();

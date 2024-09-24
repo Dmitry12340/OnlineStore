@@ -12,8 +12,8 @@ using OnlineStore.DataAccess.Common;
 namespace OnlineStore.DataAccess.Migrations
 {
     [DbContext(typeof(OnlineStoreDbContex))]
-    [Migration("20240923200450_AddIdentityMigration")]
-    partial class AddIdentityMigration
+    [Migration("20240924105025_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

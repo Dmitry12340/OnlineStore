@@ -38,7 +38,6 @@ namespace OnlineStore.ComponentRegistar
 
         private static void RegisterServices(IServiceCollection services)
         {
-
             services.AddScoped<IRedisCache, RedisCache>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();

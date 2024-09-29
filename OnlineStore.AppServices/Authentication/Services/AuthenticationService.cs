@@ -11,26 +11,49 @@ namespace OnlineStore.AppServices.Authentication.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
+        
         public AuthenticationService(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        public Task RegisterAsync(string email, string password, CancellationToken cancellationToken)
+        /// <inheritdoc>
+        public async Task<bool> RegisterAsync(string email, string password, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var user = new ApplicationUser
+            {
+                UserName = email,
+                Email = email,
+            };
+
+            var registeredUser = await _userManager.CreateAsync(user, password);
+
+            return registeredUser != null;
         }
 
-        public async Task SignInAsync(string email, string password, CancellationToken cancellationToken)
+        /// <inheritdoc>
+        public async Task<bool> SignInAsync(string email, string password, CancellationToken cancellationToken)
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
             {
-                throw new UnauthorizedAccessException("Такого пользователя не существует");
+                throw new UnauthorizedAccessException("Неправельный email или пароль.");
+            }
+
+            var isPasswordMatched = await _userManager.CheckPasswordAsync(user, password);
+            if (isPasswordMatched)
+            {
+                await _signInManager.SignInAsync(user, isPersistent: true);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
+        /// <inheritdoc>
         public Task SignOutAsync(CancellationToken cancellationToken)
         {
             return _signInManager.SignOutAsync();

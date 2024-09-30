@@ -4,14 +4,14 @@ using OnlineStore.Domain.Entities;
 
 namespace OnlineStore.DataAccess.Common
 {
-    public class OnlineStoreDbContex : IdentityDbContext<ApplicationUser, ApplicationRole, int>
+    public class OnlineStoreDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
-        public OnlineStoreDbContex() : base()
+        public OnlineStoreDbContext() : base()
         {
             
         }
 
-        public OnlineStoreDbContex(DbContextOptions<OnlineStoreDbContex> options)
+        public OnlineStoreDbContext(DbContextOptions<OnlineStoreDbContext> options)
             : base(options)
         {
             
@@ -21,10 +21,11 @@ namespace OnlineStore.DataAccess.Common
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OnlineStoreDbContex).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(OnlineStoreDbContext).Assembly);
         }
 
         DbSet<ProductAttribute> Attributes { get; set; }
         DbSet<NotificationChannels> NotificationChannels { get; set; }
+        DbSet<Domain.Entities.Product> Products { get; set; }
     }
 }

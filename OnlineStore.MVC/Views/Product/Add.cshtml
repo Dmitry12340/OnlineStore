@@ -1,0 +1,13 @@
+﻿@model ProductViewModel
+
+<form asp-action="Add" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label asp-for="Category"></label>
+        <input asp-for="Category" type="Category" />
+    </div>
+    <button type="submit">Add</button>
+</form>

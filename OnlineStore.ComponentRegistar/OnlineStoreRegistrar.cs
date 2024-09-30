@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineStore.AppServices.Authentication.Services;
 using OnlineStore.AppServices.Common.Redis;
+using OnlineStore.AppServices.Product.Services;
 using OnlineStore.DataAccess.Common;
 using OnlineStore.Domain.Entities;
 using OnlineStore.Infrastructure.Mappings;
@@ -19,7 +20,7 @@ namespace OnlineStore.ComponentRegistar
         public static void AddComponents(IServiceCollection services, IConfiguration configuration)
         {
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<OnlineStoreDbContex>()
+                .AddEntityFrameworkStores<OnlineStoreDbContext>()
                 .AddDefaultTokenProviders();
 
 
@@ -32,7 +33,7 @@ namespace OnlineStore.ComponentRegistar
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            services.AddDbContext<OnlineStoreDbContex>(options =>
+            services.AddDbContext<OnlineStoreDbContext>(options =>
                 options.UseNpgsql(connectionString));
         }
 
@@ -41,6 +42,8 @@ namespace OnlineStore.ComponentRegistar
             services.AddScoped<IRedisCache, RedisCache>();
 
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+            services.AddScoped<IProductService, ProductService>();
         }
 
         private static void RegisterMapper(IServiceCollection services, IConfiguration configuration)

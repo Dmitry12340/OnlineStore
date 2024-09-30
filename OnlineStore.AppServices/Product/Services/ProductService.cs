@@ -1,4 +1,4 @@
-﻿using OnlineStore.Domain.Entities;
+﻿
 
 namespace OnlineStore.AppServices.Product.Services
 {
@@ -12,11 +12,17 @@ namespace OnlineStore.AppServices.Product.Services
                 Category = category,
                 IsDeleted = false
             };
+
+            using (OnlineStoreDbContext db = new OnlineStoreDbContext())
+            {
+                db.Products.Add(product);
+                db.SaveChanges();
+            }
         }
 
         public Task DeleteAsync(string name)
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

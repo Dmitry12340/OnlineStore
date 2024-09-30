@@ -10,7 +10,7 @@ using OnlineStore.DataAccess.Common;
 
 namespace OnlineStore.DataAccess.Migrations
 {
-    [DbContext(typeof(OnlineStoreDbContex))]
+    [DbContext(typeof(OnlineStoreDbContext))]
     partial class OnlineStoreDbContexModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

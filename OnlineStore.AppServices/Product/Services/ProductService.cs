@@ -13,11 +13,6 @@ namespace OnlineStore.AppServices.Product.Services
                 IsDeleted = false
             };
 
-            using (OnlineStoreDbContext db = new OnlineStoreDbContext())
-            {
-                db.Products.Add(product);
-                db.SaveChanges();
-            }
         }
 
         public Task DeleteAsync(string name)

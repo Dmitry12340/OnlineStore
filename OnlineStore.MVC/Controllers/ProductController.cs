@@ -21,8 +21,7 @@ namespace OnlineStore.MVC.Controllers
         [HttpPost]
         public IActionResult Add(string name, string category)
         {
-            ProductService productService = new ProductService();
-            productService.AddAsync(name, category);
+            
 
             return View();
         }

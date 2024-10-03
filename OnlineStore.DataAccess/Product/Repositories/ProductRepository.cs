@@ -12,6 +12,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
         public async Task AddAsync(Products entity)
         {
             await _dbContext.AddAsync(entity);
+            await _dbContext.SaveChangesAsync();
         }
     }
 }

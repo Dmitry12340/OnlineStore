@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OnlineStore.Domain.Entities
+﻿namespace OnlineStore.Domain.Entities
 {
     /// <summary>
     /// Товар
     /// </summary>
-    public class Product
+    public class Products
     {
         public object name;
 

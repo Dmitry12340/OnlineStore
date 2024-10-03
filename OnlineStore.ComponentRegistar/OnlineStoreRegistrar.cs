@@ -7,6 +7,7 @@ using OnlineStore.AppServices.Authentication.Services;
 using OnlineStore.AppServices.Common.Redis;
 using OnlineStore.AppServices.Product.Services;
 using OnlineStore.DataAccess.Common;
+using OnlineStore.DataAccess.Product.Repositories;
 using OnlineStore.Domain.Entities;
 using OnlineStore.Infrastructure.Mappings;
 
@@ -35,6 +36,8 @@ namespace OnlineStore.ComponentRegistar
 
             services.AddDbContext<OnlineStoreDbContext>(options =>
                 options.UseNpgsql(connectionString));
+
+            services.AddScoped<IProductRepository,  ProductRepository>();
         }
 
         private static void RegisterServices(IServiceCollection services)

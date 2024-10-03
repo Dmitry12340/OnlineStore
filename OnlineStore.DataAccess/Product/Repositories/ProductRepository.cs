@@ -1,17 +1,17 @@
 ﻿using OnlineStore.DataAccess.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OnlineStore.Domain.Entities;
 
 namespace OnlineStore.DataAccess.Product.Repositories
 {
-    public sealed class ProductRepository : OnlineStoreDbContext<Domain.Entities.Product>, IProductRepository
+    public sealed class ProductRepository : EfRepositoryBase<Products>, IProductRepository
     {
-        public Task AddAsync(Domain.Entities.Product entity)
+        public ProductRepository(OnlineStoreDbContext dbContext) : base(dbContext)
         {
-            throw new NotImplementedException();
+        }
+
+        public async Task AddAsync(Products entity)
+        {
+            await _dbContext.AddAsync(entity);
         }
     }
 }

@@ -24,8 +24,13 @@ namespace OnlineStore.DataAccess.Common
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OnlineStoreDbContext).Assembly);
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+        }
+
         DbSet<ProductAttribute> Attributes { get; set; }
         DbSet<NotificationChannels> NotificationChannels { get; set; }
-        DbSet<Domain.Entities.Product> Products { get; set; }
+        DbSet<Products> Products { get; set; }
     }
 }

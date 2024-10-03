@@ -13,6 +13,12 @@ namespace OnlineStore.DataAccess.Product.Repositories
         {
             await _dbContext.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
+
+            //_dbContext.Products.Add(entity);
+            //await _dbContext.SaveChangesAsync();
+
+            //_dbContext.Set<Products>().Add(entity);
+            //_dbContext
         }
     }
 }

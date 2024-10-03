@@ -15,11 +15,6 @@ namespace OnlineStore.MVC.Controllers
             _productService = productService;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         public IActionResult Add()
         {
@@ -27,15 +22,10 @@ namespace OnlineStore.MVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(string name, string category)
+        public async Task<IActionResult> Add(ProductsDto products)
         {
-            var product = new ProductsDto
-            {
-                Name = name,
-                Category = category
-            };
 
-            _productService.AddProductAsync(product);
+            await _productService.AddProductAsync(products);
 
             return View();
         }

@@ -18,8 +18,7 @@ namespace OnlineStore.AppServices.Product.Services
             var product = new Products
             {
                 Name = productsDto.Name,
-                Category = productsDto.Category,
-                IsDeleted = false
+                Category = productsDto.Category
             };
 
             await _repository.AddAsync(product);

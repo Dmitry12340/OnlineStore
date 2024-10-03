@@ -29,8 +29,8 @@ namespace OnlineStore.DataAccess.Common
             base.OnConfiguring(optionsBuilder);
         }
 
-        DbSet<ProductAttribute> Attributes { get; set; }
-        DbSet<NotificationChannels> NotificationChannels { get; set; }
-        DbSet<Products> Products { get; set; }
+        public DbSet<ProductAttribute> Attributes { get; set; }
+        public DbSet<NotificationChannels> NotificationChannels { get; set; }
+        public DbSet<Products> Products { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace OnlineStore.DataAccess.Product.Configurations
                 .Property(e => e.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+
+
             builder.HasIndex(x => x.Name);
 
             builder.Property(e => e.IsDeleted)

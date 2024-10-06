@@ -20,7 +20,6 @@
         /// <summary>
         /// Получает все записи.
         /// </summary>
-        /// <returns></returns>
-        //Task<List<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync();
     }
 }

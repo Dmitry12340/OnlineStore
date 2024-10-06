@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineStore.AppServices.Common;
+using System.Data.Entity.Infrastructure;
 
 namespace OnlineStore.DataAccess.Common
 {

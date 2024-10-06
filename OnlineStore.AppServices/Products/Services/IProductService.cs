@@ -1,4 +1,5 @@
 ﻿using OnlineStore.Contracts.ProductsDto;
+using OnlineStore.Domain.Entities;
 
 namespace OnlineStore.AppServices.Product.Services
 {
@@ -8,5 +9,7 @@ namespace OnlineStore.AppServices.Product.Services
     public interface IProductService
     {
         Task AddProductAsync(ProductsDto productsDto);
+
+        Task<Products> GetProductsAsync(ProductsDto productsDto);
     }
 }

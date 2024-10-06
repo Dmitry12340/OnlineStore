@@ -20,5 +20,11 @@ namespace OnlineStore.DataAccess.Product.Repositories
             //_dbContext.Set<Products>().Add(entity);
             //_dbContext
         }
+
+        public async Task<Products> GetAsync(string name)
+        {
+            return _dbContext.Set<Products>().FirstOrDefault(x => x.Name == name);
+            //return _dbContext.Products.FirstOrDefault(x => x.Name == name);
+        }
     }
 }

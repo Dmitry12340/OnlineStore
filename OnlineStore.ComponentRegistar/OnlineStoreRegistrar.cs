@@ -37,7 +37,7 @@ namespace OnlineStore.ComponentRegistar
             services.AddDbContext<OnlineStoreDbContext>(options =>
                 options.UseNpgsql(connectionString));
 
-            services.AddScoped<IProductRepository,  ProductRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
 
         private static void RegisterServices(IServiceCollection services)

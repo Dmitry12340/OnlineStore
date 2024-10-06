@@ -19,6 +19,11 @@ namespace OnlineStore.DataAccess.Common
             throw new NotImplementedException();
         }
 
+        public Task<List<T>> GetAllAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<T> GetAsync(int id)
         {
             using (var connection = _connection)

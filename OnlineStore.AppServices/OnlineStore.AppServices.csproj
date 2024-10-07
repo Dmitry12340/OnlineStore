@@ -7,18 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Models\" />
-    <Folder Include="Common\Repositories\" />
-    <Folder Include="Common\Services\" />
-    <Folder Include="Common\UseCases\" />
-    <Folder Include="Orders\Models\" />
-    <Folder Include="Orders\UseCases\" />
-    <Folder Include="Orders\Services\" />
-    <Folder Include="Orders\Repositories\" />
-    <Folder Include="Users\Models\" />
-    <Folder Include="Users\Repositories\" />
-    <Folder Include="Users\Services\" />
-    <Folder Include="Users\UseCases\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineStore.Contracts\OnlineStore.Contracts.csproj" />
+    <ProjectReference Include="..\OnlineStore.Domain\OnlineStore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

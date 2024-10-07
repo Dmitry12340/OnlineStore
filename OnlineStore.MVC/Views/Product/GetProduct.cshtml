@@ -1,0 +1,9 @@
+﻿@model ProductViewModel
+
+<form asp-action="GetProduct" method="post">
+    <div>
+        <label asp-for="Name"></label>
+        <input asp-for="Name" />
+    </div>
+    <button type="submit">Get</button>
+</form>

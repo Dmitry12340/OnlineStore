@@ -20,20 +20,20 @@ namespace OnlineStore.DataAccess.Common
         /// <inheritdoc/>
         public async Task AddAsync(T entity)
         {
-            _dbContext.AddAsync(entity).AsTask();
+            await _dbContext.AddAsync(entity).AsTask();
             await _dbContext.SaveChangesAsync();
         }
 
         /// <inheritdoc/>
-        public virtual Task<List<T>> GetAllAsync()
+        public async virtual Task<T> GetAsync(int id)
         {
-            return _dbContext.Set<T>().ToListAsync();
+            return await _dbContext.FindAsync<T>(id).AsTask();
         }
 
         /// <inheritdoc/>
-        public virtual Task<T> GetAsync(int id)
+        public async virtual Task<List<T>> GetAllAsync()
         {
-            return _dbContext.FindAsync<T>(id).AsTask();
+            return await _dbContext.Set<T>().ToListAsync();
         }
     }
 }

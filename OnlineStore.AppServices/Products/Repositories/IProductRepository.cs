@@ -8,5 +8,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
         Task AddAsync(Products entity);
 
         Task<Products> GetAsync(string name);
+
+        Task<List<Products>> GetAllProductAsync();
     }
 }

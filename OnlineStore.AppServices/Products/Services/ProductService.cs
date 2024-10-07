@@ -24,9 +24,14 @@ namespace OnlineStore.AppServices.Product.Services
             await _repository.AddAsync(product);
         }
 
-        public async Task<Products> GetProductsAsync(ProductsDto productsDto)
+        public Task<Products> GetProductsAsync(ProductsDto productsDto)
         {
-            return await _repository.GetAsync(productsDto.Name);
+            return _repository.GetAsync(productsDto.Name);
+        }
+
+        public async Task<List<Products>> GetAllProductsAsync()
+        {
+            return await _repository.GetAllProductAsync();
         }
     }
 }

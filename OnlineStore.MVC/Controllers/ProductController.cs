@@ -39,11 +39,16 @@ namespace OnlineStore.MVC.Controllers
         public async Task<IActionResult> GetProduct(ProductsDto productDto)
         {
             Products prod = await _productService.GetProductsAsync(productDto);
-            Console.WriteLine();
-            Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}");
 
-            Console.WriteLine();
+            if (prod != null)
+            {
+                Console.WriteLine();
+                Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}");
 
+                Console.WriteLine();
+            }
+            else
+                Console.WriteLine("Товар закончился или не существует");
             
             return View();
         }
@@ -63,7 +68,7 @@ namespace OnlineStore.MVC.Controllers
             {
                 Console.WriteLine($"Id = {product.Id}, Name = {product.Name}, Category = {product.Category}");
             }
-            return View("GetAllProduct");
+            return View("AllProduct", products);
         }
     }
 }

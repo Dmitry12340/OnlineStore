@@ -1,6 +1,6 @@
 ﻿using OnlineStore.DataAccess.Common;
 using OnlineStore.Domain.Entities;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace OnlineStore.DataAccess.Product.Repositories
 {
@@ -24,18 +24,24 @@ namespace OnlineStore.DataAccess.Product.Repositories
 
         public async Task<Products> GetAsync(string name)
         {
-            return _dbContext.Products.FirstOrDefault(x => x.Name == name);
-
-            //В таком виде не работает
-            //return await _dbContext.Products.FirstOrDefaultAsync(x => x.Name == name);
+            return await _dbContext.Products.FirstOrDefaultAsync(x => x.Name == name && !x.IsDeleted);
         }
 
         public async Task<List<Products>> GetAllProductAsync()
         {
-            return _dbContext.Products.ToList();
-
-            //В таком виде не работает
             //return await _dbContext.Products.ToListAsync();
+
+            var products = await _dbContext.Products.ToListAsync();
+
+            List<Products> notIsDeleted = new List<Products>();
+            foreach (var product in products)
+            {
+                if (!product.IsDeleted)
+                {
+                    notIsDeleted.Add(product);
+                }
+            }
+            return notIsDeleted;
         }
     }
 }

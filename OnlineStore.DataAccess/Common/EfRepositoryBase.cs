@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//using Microsoft.EntityFrameworkCore;
+using System.Data.Entity;
 using OnlineStore.AppServices.Common;
-using System.Data.Entity.Infrastructure;
 
 namespace OnlineStore.DataAccess.Common
 {

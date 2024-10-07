@@ -42,7 +42,28 @@ namespace OnlineStore.MVC.Controllers
             Console.WriteLine();
             Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}");
 
+            Console.WriteLine();
+
+            
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetAllProduct()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllProducts()
+        {
+            var products = await _productService.GetAllProductsAsync();
+
+            foreach (var product in products)
+            {
+                Console.WriteLine($"Id = {product.Id}, Name = {product.Name}, Category = {product.Category}");
+            }
+            return View("GetAllProduct");
         }
     }
 }

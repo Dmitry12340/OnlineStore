@@ -11,5 +11,7 @@ namespace OnlineStore.AppServices.Product.Services
         Task AddProductAsync(ProductsDto productsDto);
 
         Task<Products> GetProductsAsync(ProductsDto productsDto);
+
+        Task<List<Products>> GetAllProductsAsync();
     }
 }

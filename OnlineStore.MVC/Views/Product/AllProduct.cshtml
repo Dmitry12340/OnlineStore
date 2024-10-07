@@ -1,0 +1,21 @@
+﻿@using OnlineStore.Domain.Entities
+@{
+    ViewData["Title"] = "All Products";
+}
+@model List<Products>
+
+<h1>@ViewData["Title"]</h1>
+<p>
+    <html>
+    <body>
+        <ul>
+            @foreach (var product in Model)
+            {
+                <li>
+                    <strong>Id:</strong>@product.Id  <Strong>Name:</Strong>@product.Name  <strong>Category:</strong>@product.Category
+                </li>
+            }
+        </ul>
+    </body>
+</html>
+</p>

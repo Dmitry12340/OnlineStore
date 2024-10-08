@@ -29,19 +29,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
 
         public async Task<List<Products>> GetAllProductAsync()
         {
-            //return await _dbContext.Products.ToListAsync();
-
-            var products = await _dbContext.Products.ToListAsync();
-
-            List<Products> notIsDeleted = new List<Products>();
-            foreach (var product in products)
-            {
-                if (!product.IsDeleted)
-                {
-                    notIsDeleted.Add(product);
-                }
-            }
-            return notIsDeleted;
+            return await _dbContext.Products.Where(p => !p.IsDeleted).ToListAsync();
         }
     }
 }

@@ -30,6 +30,11 @@
         /// <summary>
         /// Изображения товара.
         /// </summary>
-        //public ICollection<ProductImage> Images { get; set; } = [];
+        public ICollection<ProductImages> Images { get; set; } = [];
+
+        /// <summary>
+        /// Описание продукта
+        /// </summary>
+        public string Description {  get; set; }
     }
 }

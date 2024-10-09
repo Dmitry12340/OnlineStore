@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using OnlineStore.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineStore.MVC.Models
 {
@@ -9,5 +10,11 @@ namespace OnlineStore.MVC.Models
 
         [Required]
         public string Category { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
+        [Required]
+        public ICollection<string> Images {  get; set; }
     }
 }

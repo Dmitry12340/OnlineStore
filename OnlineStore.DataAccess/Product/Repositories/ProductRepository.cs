@@ -1,6 +1,7 @@
 ﻿using OnlineStore.DataAccess.Common;
 using OnlineStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using OnlineStore.AppServices.Product.Repositories;
 
 namespace OnlineStore.DataAccess.Product.Repositories
 {
@@ -14,12 +15,6 @@ namespace OnlineStore.DataAccess.Product.Repositories
         {
             await _dbContext.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
-
-            //_dbContext.Products.Add(entity);
-            //await _dbContext.SaveChangesAsync();
-
-            //_dbContext.Set<Products>().Add(entity);
-            //_dbContext
         }
 
         public async Task<Products> GetAsync(string name)
@@ -27,7 +22,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
             return await _dbContext.Products.FirstOrDefaultAsync(x => x.Name == name && !x.IsDeleted);
         }
 
-        public async Task<List<Products>> GetAllProductAsync()
+        public async Task<List<Products>> GetAllAsync()
         {
             return await _dbContext.Products.Where(p => !p.IsDeleted).ToListAsync();
         }

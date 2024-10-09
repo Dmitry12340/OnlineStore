@@ -5,9 +5,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineStore.AppServices.Authentication.Services;
 using OnlineStore.AppServices.Common.Redis;
+using OnlineStore.AppServices.Product.Repositories;
 using OnlineStore.AppServices.Product.Services;
+using OnlineStore.AppServices.ProductImage.Repositories;
+using OnlineStore.AppServices.ProductImage.Services;
 using OnlineStore.DataAccess.Common;
 using OnlineStore.DataAccess.Product.Repositories;
+using OnlineStore.DataAccess.ProductImage.Repositories;
 using OnlineStore.Domain.Entities;
 using OnlineStore.Infrastructure.Mappings;
 
@@ -38,6 +42,8 @@ namespace OnlineStore.ComponentRegistar
                 options.UseNpgsql(connectionString));
 
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<IProductImagesRepository, ProductImagesRepository>();
         }
 
         private static void RegisterServices(IServiceCollection services)
@@ -47,6 +53,8 @@ namespace OnlineStore.ComponentRegistar
             services.AddScoped<IAuthenticationService, AuthenticationService>();
 
             services.AddScoped<IProductService, ProductService>();
+
+            services.AddScoped<IProductImagesService, ProductImagesService>();
         }
 
         private static void RegisterMapper(IServiceCollection services, IConfiguration configuration)

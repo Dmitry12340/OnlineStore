@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineStore.AppServices.Product.Services;
+using OnlineStore.AppServices.ProductImage.Services;
 using OnlineStore.Contracts.ProductsDto;
 using OnlineStore.Domain.Entities;
 
@@ -8,6 +9,7 @@ namespace OnlineStore.MVC.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IProductImagesService _productImagesService;
 
         public ProductController(IProductService productService)
         {
@@ -24,7 +26,8 @@ namespace OnlineStore.MVC.Controllers
         public async Task<IActionResult> Add(ProductsDto productDto)
         {
 
-            await _productService.AddProductAsync(productDto);
+            await _productService.AddAsync(productDto);
+            await _productImagesService.AddProductImagesAsync(productDto);
 
             return View();
         }
@@ -38,7 +41,7 @@ namespace OnlineStore.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> GetProduct(ProductsDto productDto)
         {
-            Products prod = await _productService.GetProductsAsync(productDto);
+            Products prod = await _productService.GetAsync(productDto);
 
             if (prod != null)
             {
@@ -48,8 +51,10 @@ namespace OnlineStore.MVC.Controllers
                 Console.WriteLine();
             }
             else
+            {
                 Console.WriteLine("Товар закончился или не существует");
-            
+            }
+
             return View();
         }
 
@@ -62,7 +67,7 @@ namespace OnlineStore.MVC.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllProducts()
         {
-            var products = await _productService.GetAllProductsAsync();
+            var products = await _productService.GetAllAsync();
 
             foreach (var product in products)
             {

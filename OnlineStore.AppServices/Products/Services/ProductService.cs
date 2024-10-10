@@ -20,7 +20,8 @@ namespace OnlineStore.AppServices.Product.Services
             {
                 Name = productsDto.Name,
                 Category = productsDto.Category,
-                Description = productsDto.Description
+                Description = productsDto.Description,
+                Images = productsDto.Images
             };
 
             await _repository.AddAsync(product);
@@ -28,7 +29,10 @@ namespace OnlineStore.AppServices.Product.Services
 
         public Task<Products> GetAsync(ProductsDto productsDto)
         {
+            //var product = _repository.GetAsync(productsDto.Name);
             return _repository.GetAsync(productsDto.Name);
+
+
         }
 
         public async Task<List<Products>> GetAllAsync()

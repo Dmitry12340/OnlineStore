@@ -27,7 +27,7 @@ namespace OnlineStore.MVC.Controllers
         {
 
             await _productService.AddAsync(productDto);
-            await _productImagesService.AddProductImagesAsync(productDto);
+            //await _productImagesService.AddProductImagesAsync(productDto);
 
             return View();
         }

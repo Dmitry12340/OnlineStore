@@ -8,10 +8,10 @@ namespace OnlineStore.AppServices.Product.Services
     /// </summary>
     public interface IProductService
     {
-        Task AddProductAsync(ProductsDto productsDto);
+        Task AddAsync(ProductsDto productsDto);
 
-        Task<Products> GetProductsAsync(ProductsDto productsDto);
+        Task<Products> GetAsync(ProductsDto productsDto);
 
-        Task<List<Products>> GetAllProductsAsync();
+        Task<List<Products>> GetAllAsync();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using OnlineStore.AppServices.Common;
 using OnlineStore.Domain.Entities;
 
-namespace OnlineStore.DataAccess.Product.Repositories
+namespace OnlineStore.AppServices.Product.Repositories
 {
     public interface IProductRepository : IRepository<Products>
     {
@@ -9,6 +9,6 @@ namespace OnlineStore.DataAccess.Product.Repositories
 
         Task<Products> GetAsync(string name);
 
-        Task<List<Products>> GetAllProductAsync();
+        Task<List<Products>> GetAllAsync();
     }
 }

@@ -17,15 +17,22 @@ namespace OnlineStore.DataAccess.Product.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-
             builder.HasIndex(x => x.Name);
+
+
+            builder.Property(e => e.Category)
+            .HasMaxLength(100);
+
+            builder.Property(e => e.Description)
+                .HasMaxLength(500);
+
+            builder.HasMany(p => p.Images)
+                .WithOne(i => i.Products)
+                .HasForeignKey(i => i.ProductId);
 
             builder.Property(e => e.IsDeleted)
                 .IsRequired()
                 .HasDefaultValue(false);
-
-            builder.Property(e => e.Category)
-                .HasMaxLength(100);
         }
     }
 }

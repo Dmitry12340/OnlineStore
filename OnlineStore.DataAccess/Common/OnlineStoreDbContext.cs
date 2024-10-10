@@ -32,5 +32,6 @@ namespace OnlineStore.DataAccess.Common
         public DbSet<ProductAttribute> Attributes { get; set; }
         public DbSet<NotificationChannels> NotificationChannels { get; set; }
         public DbSet<Products> Products { get; set; }
+        public DbSet<ProductImages> ProductImages { get; set; }
     }
 }

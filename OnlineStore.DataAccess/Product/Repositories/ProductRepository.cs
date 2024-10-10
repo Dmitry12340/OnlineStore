@@ -19,7 +19,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
 
         public async Task<Products> GetAsync(string name)
         {
-            return await _dbContext.Products.FirstOrDefaultAsync(x => x.Name == name && !x.IsDeleted);
+            return await _dbContext.Products.Include(p => p.Images).FirstOrDefaultAsync(x => x.Name == name && !x.IsDeleted);
         }
 
         public async Task<List<Products>> GetAllAsync()

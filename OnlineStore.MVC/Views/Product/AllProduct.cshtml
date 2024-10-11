@@ -1,21 +1,85 @@
 ﻿@using OnlineStore.Domain.Entities
 @{
-    ViewData["Title"] = "All Products";
+    ViewData["Title"] = "Все продукты";
 }
 @model List<Products>
 
 <h1>@ViewData["Title"]</h1>
-<p>
-    <html>
-    <body>
-        <ul>
-            @foreach (var product in Model)
-            {
-                <li>
-                    <strong>Id:</strong>@product.Id  <Strong>Name:</Strong>@product.Name  <strong>Category:</strong>@product.Category
-                </li>
-            }
-        </ul>
-    </body>
-</html>
-</p>
+<div class="product-container">
+    @foreach (var product in Model)
+    {
+        <div class="product-card">
+            <div class="image-slider">
+                <div class="slides">
+                    @if (product.Images != null && product.Images.Count > 0)
+                    {
+                        foreach (var image in product.Images)
+                        {
+                            <img src="@image.Path" alt="@product.Name" class="slide" />
+                        }
+                    }
+                    else
+                    {
+                        <img src="default-image-url.jpg" alt="Нет изображений" class="slide" />
+                    }
+                </div>
+            </div>
+            <strong>Id:</strong> @product.Id <br />
+            <strong>Название:</strong> @product.Name <br />
+            <strong>Категория:</strong> @product.Category <br />
+        </div>
+    }
+</div>
+
+<style>
+    .product-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    .product-card {
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        margin: 15px;
+        padding: 10px;
+        width: 200px; /* Укажите желаемую ширину карточки */
+        position: relative;
+    }
+
+    .image-slider {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        width: 100%;
+        height: auto; /* Укажите желаемую высоту */
+    }
+
+    .slides {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+
+    .slide {
+        min-width: 100%;
+        transition: opacity 0.5s ease;
+    }
+
+    button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.5);
+        border: none;
+        cursor: pointer;
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+</style>

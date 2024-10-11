@@ -1,5 +1,5 @@
-﻿using OnlineStore.Contracts.ProductsDto;
-using OnlineStore.DataAccess.Product.Repositories;
+﻿using OnlineStore.AppServices.Product.Repositories;
+using OnlineStore.Contracts.ProductsDto;
 using OnlineStore.Domain.Entities;
 
 namespace OnlineStore.AppServices.Product.Services
@@ -13,25 +13,31 @@ namespace OnlineStore.AppServices.Product.Services
             _repository = repository;
         }
 
-        public async Task AddProductAsync(ProductsDto productsDto)
+        public async Task AddAsync(ProductsDto productsDto)
         {
+
             var product = new Products
             {
                 Name = productsDto.Name,
-                Category = productsDto.Category
+                Category = productsDto.Category,
+                Description = productsDto.Description,
+                Images = productsDto.Images
             };
 
             await _repository.AddAsync(product);
         }
 
-        public Task<Products> GetProductsAsync(ProductsDto productsDto)
+        public Task<Products> GetAsync(ProductsDto productsDto)
         {
+            //var product = _repository.GetAsync(productsDto.Name);
             return _repository.GetAsync(productsDto.Name);
+
+
         }
 
-        public async Task<List<Products>> GetAllProductsAsync()
+        public async Task<List<Products>> GetAllAsync()
         {
-            return await _repository.GetAllProductAsync();
+            return await _repository.GetAllAsync();
         }
     }
 }

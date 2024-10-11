@@ -13,7 +13,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
 
         public async Task AddAsync(Products entity)
         {
-            await _dbContext.AddAsync(entity);
+            await _dbContext.Products.AddAsync(entity);
             await _dbContext.SaveChangesAsync();
         }
 
@@ -24,7 +24,7 @@ namespace OnlineStore.DataAccess.Product.Repositories
 
         public async Task<List<Products>> GetAllAsync()
         {
-            return await _dbContext.Products.Where(p => !p.IsDeleted).ToListAsync();
+            return await _dbContext.Products.Include(p => p.Images).Where(p => !p.IsDeleted).ToListAsync();
         }
     }
 }

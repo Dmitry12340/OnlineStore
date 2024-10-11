@@ -46,7 +46,12 @@ namespace OnlineStore.MVC.Controllers
             if (prod != null)
             {
                 Console.WriteLine();
-                Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}");
+                Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}, Image = {prod.Images}");
+                
+                foreach(var image in prod.Images)
+                {
+                    Console.WriteLine($"Image = {image}");
+                }
 
                 Console.WriteLine();
             }

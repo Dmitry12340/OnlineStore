@@ -47,8 +47,8 @@ namespace OnlineStore.MVC.Controllers
             {
                 Console.WriteLine();
                 Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}, Image = {prod.Images}");
-                
-                foreach(var image in prod.Images)
+
+                foreach (var image in prod.Images)
                 {
                     Console.WriteLine($"Image = {image}");
                 }
@@ -73,11 +73,6 @@ namespace OnlineStore.MVC.Controllers
         public async Task<IActionResult> GetAllProducts()
         {
             var products = await _productService.GetAllAsync();
-
-            foreach (var product in products)
-            {
-                Console.WriteLine($"Id = {product.Id}, Name = {product.Name}, Category = {product.Category}");
-            }
             return View("AllProduct", products);
         }
     }

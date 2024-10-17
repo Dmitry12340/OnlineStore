@@ -25,4 +25,11 @@
     <Folder Include="Models\Product\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\AllProduct.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

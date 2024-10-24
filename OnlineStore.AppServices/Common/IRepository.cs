@@ -21,5 +21,11 @@
         /// Получает все записи.
         /// </summary>
         Task<List<T>> GetAllAsync();
+
+        /// <summary>
+        /// Обновляет существующую сущность в БД.
+        /// </summary>
+        /// <param name="entity">Сущность с обновлёнными данными.</param>
+        Task UpdateAsync(T entity);
     }
 }

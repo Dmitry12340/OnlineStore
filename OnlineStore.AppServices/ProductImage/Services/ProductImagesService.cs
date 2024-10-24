@@ -20,7 +20,7 @@ namespace OnlineStore.AppServices.ProductImage.Services
         {
             foreach(var image in productsDto.Images)
             {
-                await _repository.AddImagesAsync(image);
+                //await _repository.AddImagesAsync(image);
             }
         }
 

@@ -28,13 +28,23 @@
         public string Category {  get; set; }
 
         /// <summary>
+        /// Описание продукта
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Цена продукта.
+        /// </summary>
+        public decimal Price { get; set; }
+
+        /// <summary>
+        /// Колличество продукта.
+        /// </summary>
+        public int Quantity { get; set; }
+
+        /// <summary>
         /// Изображения товара.
         /// </summary>
         public ICollection<ProductImages> Images { get; set; } = [];
-
-        /// <summary>
-        /// Описание продукта
-        /// </summary>
-        public string Description {  get; set; }
     }
 }

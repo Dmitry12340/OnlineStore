@@ -1,6 +1,4 @@
-﻿using OnlineStore.Domain.Entities;
-
-namespace OnlineStore.Contracts.ProductsDto
+﻿namespace OnlineStore.Contracts.ProductsDto
 {
     /// <summary>
     /// Транспортная модель продукта
@@ -28,8 +26,18 @@ namespace OnlineStore.Contracts.ProductsDto
         public string Description { get; set; }
 
         /// <summary>
-        /// Ссылка на изображение товара
+        /// Цена.
         /// </summary>
-        public ICollection<ProductImages> Images {  get; set; }
+        public decimal Price { get; set; }
+
+        /// <summary>
+        /// Колличество продукта.
+        /// </summary>
+        public int Quantity { get; set; }
+
+        /// <summary>
+        /// Список изображений.
+        /// </summary>
+        public string[] Images { get; set; } = [];
     }
 }

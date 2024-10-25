@@ -21,8 +21,18 @@ namespace OnlineStore.AppServices.Product.Services
                 Name = productsDto.Name,
                 Category = productsDto.Category,
                 Description = productsDto.Description,
-                Images = productsDto.Images
+                Price = productsDto.Price,
+                Quantity = productsDto.Quantity
+                //Images = productsDto.Images
             };
+
+            List<ProductImages> productImages = new List<ProductImages>();
+            foreach (var image in productsDto.Images)
+            {
+                productImages.Add(new ProductImages { Path = image });
+            }
+            
+            product.Images = productImages;
 
             await _repository.AddAsync(product);
         }

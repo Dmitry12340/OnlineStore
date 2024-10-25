@@ -15,6 +15,12 @@ namespace OnlineStore.MVC.Models
         public string Description { get; set; }
 
         [Required]
+        public decimal Price { get; set; }
+
+        [Required]
+        public int Quantity { get; set; }
+
+        [Required]
         public ICollection<string> Images {  get; set; }
     }
 }

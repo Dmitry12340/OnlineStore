@@ -10,5 +10,7 @@ namespace OnlineStore.AppServices.Product.Repositories
         Task<Products> GetAsync(string name);
 
         Task<List<Products>> GetAllAsync();
+
+        Task UpdateAsync(Products entity);
     }
 }

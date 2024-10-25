@@ -33,6 +33,10 @@ namespace OnlineStore.DataAccess.Product.Configurations
             builder.Property(e => e.IsDeleted)
                 .IsRequired()
                 .HasDefaultValue(false);
+
+            builder.Property(e => e.Price);
+
+            builder.Property(e => e.Quantity);
         }
     }
 }

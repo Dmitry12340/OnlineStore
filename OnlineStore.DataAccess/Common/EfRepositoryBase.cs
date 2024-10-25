@@ -1,5 +1,4 @@
-﻿//using Microsoft.EntityFrameworkCore;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using OnlineStore.AppServices.Common;
 
 namespace OnlineStore.DataAccess.Common
@@ -34,6 +33,12 @@ namespace OnlineStore.DataAccess.Common
         public async virtual Task<List<T>> GetAllAsync()
         {
             return await _dbContext.Set<T>().ToListAsync();
+        }
+
+        public async Task UpdateAsync(T entity)
+        {
+            _dbContext.Update(entity);
+            _dbContext.SaveChanges();
         }
     }
 }

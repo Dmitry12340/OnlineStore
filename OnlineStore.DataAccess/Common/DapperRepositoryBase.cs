@@ -32,5 +32,10 @@ namespace OnlineStore.DataAccess.Common
                 return _connection.QuerySingleOrDefaultAsync<T>(queryString, new { Id = id });
             }
         }
+
+        public Task UpdateAsync(T entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

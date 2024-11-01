@@ -8,7 +8,7 @@ namespace OnlineStore.DataAccess.Carts.Configurations
     {
         public void Configure(EntityTypeBuilder<CartProduct> builder)
         {
-            builder.ToTable("cartproduct");
+            builder.ToTable("CartProduct");
 
             builder.HasKey(x => x.Id);
 

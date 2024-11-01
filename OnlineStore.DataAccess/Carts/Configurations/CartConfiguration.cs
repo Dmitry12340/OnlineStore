@@ -8,9 +8,14 @@ namespace OnlineStore.DataAccess.Carts.Configurations
     {
         public void Configure(EntityTypeBuilder<Cart> builder)
         {
-            builder.ToTable("cart");
+            builder.ToTable("Cart");
 
             builder.HasKey(x => x.Id);
+
+            builder.HasOne(t => t.Status)
+                .WithMany()
+                .HasForeignKey(t => t.StatusId)
+                .IsRequired(true);
 
             builder.Property(t => t.Created)
                 .IsRequired(true);

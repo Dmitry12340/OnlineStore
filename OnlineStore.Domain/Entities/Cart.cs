@@ -13,6 +13,11 @@
         public int UserId { get; set; }
 
         /// <summary>
+        /// Идентификатор статуса.
+        /// </summary>
+        public int StatusId { get; set; }
+
+        /// <summary>
         /// Дата создания корзины.
         /// </summary>
         public DateTime Created { get; set; }
@@ -28,13 +33,18 @@
         public DateTime? Closed { get; set; }
 
         /// <summary>
+        /// Статус корзины.
+        /// </summary>
+        public CartStatus Status { get; set; } = default!;
+
+        /// <summary>
         /// Пользователь.
         /// </summary>
-        public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; } = default!;
 
         /// <summary>
         /// Товары корзины.
         /// </summary>
-        public ICollection<CartProduct> Products { get; set; }
+        public ICollection<CartProduct> Products { get; set; } = [];
     }
 }

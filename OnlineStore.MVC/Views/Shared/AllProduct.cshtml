@@ -20,12 +20,16 @@
                     {
                         foreach (var image in product.Images)
                         {
-                            <img src="@image.Path" alt="@product.Name" class="slide" />
+                            <a href="@Url.Action("GetProduct", "Product", new { id = product.Id })">
+                                <img src="@image.Path" alt="@product.Name" class="slide" />
+                            </a>
                         }
                     }
                     else
                     {
-                        <img src="default-image-url.jpg" alt="Нет изображений" class="slide" />
+                        <a href="@Url.Action("GetProduct", "Product", new { id = product.Id })">
+                            <img src="default-image-url.jpg" alt="Нет изображений" class="slide" />
+                        </a>
                     }
                 </div>
             </div>

@@ -16,23 +16,21 @@ namespace OnlineStore.AppServices.Product.Services
         public async Task AddAsync(ProductsDto productsDto)
         {
 
+            List<ProductImages> productImages = new List<ProductImages>();
+            foreach (var image in productsDto.Images)
+            {
+                productImages.Add(new ProductImages { Path = image });
+            }
+
             var product = new Products
             {
                 Name = productsDto.Name,
                 Category = productsDto.Category,
                 Description = productsDto.Description,
                 Price = productsDto.Price,
-                Quantity = productsDto.Quantity
-                //Images = productsDto.Images
+                Quantity = productsDto.Quantity,
+                Images = productImages
             };
-
-            List<ProductImages> productImages = new List<ProductImages>();
-            foreach (var image in productsDto.Images)
-            {
-                productImages.Add(new ProductImages { Path = image });
-            }
-            
-            product.Images = productImages;
 
             await _repository.AddAsync(product);
         }

@@ -9,7 +9,6 @@ namespace OnlineStore.MVC.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly IProductImagesService _productImagesService;
 
         public ProductController(IProductService productService)
         {
@@ -27,9 +26,9 @@ namespace OnlineStore.MVC.Controllers
         {
 
             await _productService.AddAsync(productDto);
-            //await _productImagesService.AddProductImagesAsync(productDto);
 
-            return View();
+            var products = await _productService.GetAllAsync();
+            return View("AllProduct", products);
         }
 
         [HttpGet]

@@ -7,7 +7,7 @@ namespace OnlineStore.AppServices.Product.Repositories
     {
         Task AddAsync(Products entity);
 
-        Task<Products> GetAsync(string name);
+        Task<Products> GetAsync(int id);
 
         Task<List<Products>> GetAllAsync();
 

@@ -59,7 +59,7 @@ namespace OnlineStore.MVC.Controllers
                 Console.WriteLine("Товар закончился или не существует");
             }
 
-            return View();
+            return View(prod);
         }
 
         [HttpGet]

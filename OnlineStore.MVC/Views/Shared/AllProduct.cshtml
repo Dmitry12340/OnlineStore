@@ -20,9 +20,12 @@
                     {
                         foreach (var image in product.Images)
                         {
-                            <a href="@Url.Action("GetProduct", "Product", new { id = product.Id })">
-                                <img src="@image.Path" alt="@product.Name" class="slide" />
-                            </a>
+                            <form action="@Url.Action("GetProduct", "Product")" method="post" style="display:inline;">
+                                <input type="hidden" name="Id" value="@product.Id" />
+                                <button type="submit" style="border:none; background:none; padding:0;">
+                                    <img src="@image.Path" alt="@product.Name" class="slide" />
+                                </button>
+                            </form>
                         }
                     }
                     else
@@ -96,8 +99,8 @@
     .image-slider {
         /* flex: 1; /* Занимает доступное пространство */
         /* display: flex;
-            justify-content: center;
-            align-items: center; */
+                justify-content: center;
+                align-items: center; */
         overflow: hidden;
         height: 200px;
     }

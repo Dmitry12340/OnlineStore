@@ -45,6 +45,6 @@
         /// <summary>
         /// Изображения товара.
         /// </summary>
-        public ICollection<ProductImages> Images { get; set; } = [];
+        public List<ProductImages> Images { get; set; } = [];
     }
 }

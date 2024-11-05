@@ -12,5 +12,7 @@ namespace OnlineStore.AppServices.Product.Repositories
         Task<List<Products>> GetAllAsync();
 
         Task UpdateAsync(Products entity);
+
+        Task DeleteAsync(int id);
     }
 }

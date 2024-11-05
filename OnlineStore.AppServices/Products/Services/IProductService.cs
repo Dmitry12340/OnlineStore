@@ -13,5 +13,7 @@ namespace OnlineStore.AppServices.Product.Services
         Task<Products> GetAsync(ProductsDto productsDto);
 
         Task<List<Products>> GetAllAsync();
+
+        Task DeleteAsync(int id);
     }
 }

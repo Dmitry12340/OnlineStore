@@ -43,7 +43,15 @@
                 <strong>Количество:</strong> @product.Quantity <br />
                 <strong>Цена:</strong> @product.Price ₽<br />
             </div>
-            <button class="add-to-cart" data-product-id="@product.Id">В корзину</button>
+            @if (User?.Identity?.IsAuthenticated == true)
+            {
+                <button class="add-to-cart" data-product-id="@product.Id">В корзину</button>
+                @* <button class="delete-product" Delete="@product.Id">Удалить</button> *@
+                <form asp-action="DeleteProduct" asp-controller="Product" method="post">
+                    <input type="hidden" name="id" value="@product.Id" />
+                    <button class="delete-product" type="submit">Удалить</button>
+                </form>
+            }
         </div>
     }
 </div>
@@ -128,5 +136,20 @@
 
         .add-to-cart:hover {
             background-color: #45a049; /* Цвет фона кнопки при наведении */
+        }
+
+    .delete-product {
+        padding: 10px;
+        background-color: #FF0000; /* Цвет фона кнопки */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        with: 100%;
+    }
+
+        .delete-product:hover {
+            background-color: #FFFF00; /* Цвет фона кнопки при наведении */
         }
 </style>

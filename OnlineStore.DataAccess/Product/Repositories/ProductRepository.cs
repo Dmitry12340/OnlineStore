@@ -26,5 +26,19 @@ namespace OnlineStore.DataAccess.Product.Repositories
         {
             return await _dbContext.Products.Include(p => p.Images).Where(p => !p.IsDeleted).ToListAsync();
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            var product = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id && !x.IsDeleted);
+            if (product != null)
+            {
+                product.IsDeleted = true;
+                await _dbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Продук с ID {id} не найден или уже удален.");
+            }
+        }
     }
 }

@@ -74,5 +74,11 @@ namespace OnlineStore.MVC.Controllers
             var products = await _productService.GetAllAsync();
             return View("AllProduct", products);
         }
+
+        [HttpPost]
+        public async Task DeleteProduct(int id)
+        {
+            await _productService.DeleteAsync(id);
+        }
     }
 }

@@ -43,7 +43,10 @@
                 <strong>Количество:</strong> @product.Quantity <br />
                 <strong>Цена:</strong> @product.Price ₽<br />
             </div>
-            <button class="add-to-cart" data-product-id="@product.Id">В корзину</button>
+            @if (User?.Identity?.IsAuthenticated == true)
+            {
+                <button class="add-to-cart" data-product-id="@product.Id">В корзину</button>
+            }
         </div>
     }
 </div>

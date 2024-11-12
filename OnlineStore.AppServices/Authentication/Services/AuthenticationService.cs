@@ -11,7 +11,7 @@ namespace OnlineStore.AppServices.Authentication.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        
+
         public AuthenticationService(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
@@ -57,6 +57,12 @@ namespace OnlineStore.AppServices.Authentication.Services
         public Task SignOutAsync(CancellationToken cancellationToken)
         {
             return _signInManager.SignOutAsync();
+        }
+
+        public async Task AddRoleToUserAsync(string email, string roleName, CancellationToken cancellationToken)
+        {
+            ApplicationUser user = await _userManager.FindByEmailAsync(email);
+            await _userManager.AddToRoleAsync(user, roleName);
         }
     }
 }

@@ -15,5 +15,11 @@ namespace OnlineStore.AppServices.Roles.Services
             var role = new ApplicationRole { Name = roleName };
             await _roleManager.CreateAsync(role);
         }
+
+        public async Task DeleteAsync(int id, CancellationToken cancellation)
+        {
+            var role = new ApplicationRole { Id = id };
+            await _roleManager.DeleteAsync(role);
+        }
     }
 }

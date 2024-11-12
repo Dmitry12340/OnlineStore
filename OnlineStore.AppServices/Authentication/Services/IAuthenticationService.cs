@@ -27,5 +27,7 @@
         /// <param name="cancellationToken">Токен отмены операции.</param>
         /// <returns></returns>
         Task<bool> RegisterAsync(string email, string password, CancellationToken cancellationToken);
+
+        Task AddRoleToUserAsync(string email, string  roleName, CancellationToken cancellationToken);
     }
 }

@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace OnlineStore.AppServices.UserRoles.Services
 {
+    /// <summary>
+    /// Интерфейс сервиса для работы с ролями пользователей.
+    /// </summary>
     public interface IUserRolesService
     {
-        Task AddAsync(int userId, int  roleId);
+        /// <summary>
+        /// Добавить роль пользователю.
+        /// </summary>
+        /// <param name="email">Email пользователя.</param>
+        /// <param name="roleName">Роль пользователя.</param>
+        /// <param name="cancellationToken">Токен отмены.</param>
+        Task AddRoleToUserAsync(string email, string roleName, CancellationToken cancellationToken);
     }
 }

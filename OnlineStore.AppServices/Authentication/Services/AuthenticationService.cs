@@ -58,11 +58,5 @@ namespace OnlineStore.AppServices.Authentication.Services
         {
             return _signInManager.SignOutAsync();
         }
-
-        public async Task AddRoleToUserAsync(string email, string roleName, CancellationToken cancellationToken)
-        {
-            ApplicationUser user = await _userManager.FindByEmailAsync(email);
-            await _userManager.AddToRoleAsync(user, roleName);
-        }
     }
 }

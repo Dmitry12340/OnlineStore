@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineStore.AppServices.Authentication.Services;
 using OnlineStore.AppServices.Product.Services;
 using OnlineStore.AppServices.Roles.Services;
+using OnlineStore.AppServices.UserRoles.Services;
 using OnlineStore.Domain.Entities;
 using OnlineStore.MVC.Models;
 using System.Diagnostics;
@@ -13,18 +14,18 @@ namespace OnlineStore.MVC.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
-        private readonly IAuthenticationService _authenticationService;
         private readonly IRolesService _rolesService;
+        private readonly IUserRolesService _userRolesService;
 
         public HomeController(ILogger<HomeController> logger, 
             IProductService productService,
-            IAuthenticationService authenticationService,
-            IRolesService rolesService)
+            IRolesService rolesService,
+            IUserRolesService userRolesService)
         {
             _logger = logger;
             _productService = productService;
-            _authenticationService = authenticationService;
             _rolesService = rolesService;
+            _userRolesService = userRolesService;
         }
 
         CancellationToken cancellation;
@@ -33,8 +34,8 @@ namespace OnlineStore.MVC.Controllers
         {
             var user1 = new ApplicationUser();
 
-            //await _rolesService.AddAsync("Admin", CancellationToken.None);
-            await _authenticationService.AddRoleToUserAsync("diman_chelyad@mail.ru", "Admin", cancellation);
+            //await _rolesService.AddAsync("User", CancellationToken.None);
+            await _userRolesService.AddRoleToUserAsync("multiminik@gmail.com", "User", cancellation);
 
             var products = await _productService.GetAllAsync();
             return View("AllProduct", products);

@@ -11,7 +11,7 @@ namespace OnlineStore.AppServices.Authentication.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        
+
         public AuthenticationService(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;

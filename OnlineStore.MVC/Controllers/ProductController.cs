@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OnlineStore.AppServices.Product.Services;
 using OnlineStore.AppServices.ProductImage.Services;
 using OnlineStore.Contracts.ProductsDto;
@@ -73,6 +74,14 @@ namespace OnlineStore.MVC.Controllers
         {
             var products = await _productService.GetAllAsync();
             return View("AllProduct", products);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            await _productService.DeleteAsync(id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

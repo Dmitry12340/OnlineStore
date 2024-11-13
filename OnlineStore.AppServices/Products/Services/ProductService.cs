@@ -45,5 +45,10 @@ namespace OnlineStore.AppServices.Product.Services
         {
             return await _repository.GetAllAsync();
         }
+
+        public async Task DeleteAsync(int id)
+        {
+            await _repository.DeleteAsync(id);
+        }
     }
 }

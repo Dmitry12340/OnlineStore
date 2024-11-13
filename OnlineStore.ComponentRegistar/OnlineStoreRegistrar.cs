@@ -10,6 +10,7 @@ using OnlineStore.AppServices.Product.Services;
 using OnlineStore.AppServices.ProductImage.Repositories;
 using OnlineStore.AppServices.ProductImage.Services;
 using OnlineStore.AppServices.Roles.Services;
+using OnlineStore.AppServices.UserRoles.Services;
 using OnlineStore.DataAccess.Common;
 using OnlineStore.DataAccess.Product.Repositories;
 using OnlineStore.DataAccess.ProductImage.Repositories;
@@ -58,6 +59,8 @@ namespace OnlineStore.ComponentRegistar
             services.AddScoped<IProductImagesService, ProductImagesService>();
 
             services.AddScoped<IRolesService, RolesService>();
+
+            services.AddScoped<IUserRolesService, UserRolesService>();
         }
 
         private static void RegisterMapper(IServiceCollection services, IConfiguration configuration)

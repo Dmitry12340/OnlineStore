@@ -15,8 +15,16 @@ namespace OnlineStore.AppServices.UserRoles.Services
         /// Добавить роль пользователю.
         /// </summary>
         /// <param name="email">Email пользователя.</param>
-        /// <param name="roleName">Роль пользователя.</param>
+        /// <param name="roleName">Имя роли.</param>
         /// <param name="cancellationToken">Токен отмены.</param>
         Task AddRoleToUserAsync(string email, string roleName, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удалить роль пользователя.
+        /// </summary>
+        /// <param name="email">Email пользователя.</param>
+        /// <param name="roleName">Имя роли.</param>
+        /// <param name="cancellationToken">Токен отмены.</param>
+        Task RemoveRoleFromUser(string email, string roleName, CancellationToken cancellationToken);
     }
 }

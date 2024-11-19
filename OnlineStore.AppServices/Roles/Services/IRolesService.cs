@@ -1,4 +1,7 @@
-﻿namespace OnlineStore.AppServices.Roles.Services
+﻿using OnlineStore.Contracts.Users;
+using OnlineStore.Domain.Entities;
+
+namespace OnlineStore.AppServices.Roles.Services
 {
     /// <summary>
     /// Интерфейс сервиса для работы с ролями.
@@ -18,5 +21,11 @@
         /// <param name="id">Идентификатор роли.</param>
         /// <param name="cancellation">Токен отмены.</param>
         Task DeleteAsync(int id, CancellationToken cancellation);
+
+        /// <summary>
+        /// Получить все существующие роли.
+        /// </summary>
+        /// <returns>Список ролей(транспортная модель).</returns>
+        public List<RoleDto> GetAll();
     }
 }

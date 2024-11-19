@@ -34,7 +34,7 @@ namespace OnlineStore.MVC.Controllers
         {
             var user1 = new ApplicationUser();
 
-            //await _rolesService.AddAsync("User", CancellationToken.None);
+            await _rolesService.AddAsync("User", CancellationToken.None);
             //await _userRolesService.AddRoleToUserAsync("multiminik@gmail.com", "User", cancellation);
             //await _userRolesService.RemoveRoleFromUser("multiminik@gmail.com", "User", cancellation);
 

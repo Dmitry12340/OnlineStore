@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnlineStore.Domain\OnlineStore.Domain.csproj" />
+    <Compile Remove="ProductImageDto\**" />
+    <EmbeddedResource Remove="ProductImageDto\**" />
+    <None Remove="ProductImageDto\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ProductImageDto\" />
+    <ProjectReference Include="..\OnlineStore.Domain\OnlineStore.Domain.csproj" />
   </ItemGroup>
 
 </Project>

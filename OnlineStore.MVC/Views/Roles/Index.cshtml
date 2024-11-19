@@ -1,0 +1,43 @@
+﻿@using OnlineStore.Contracts.Users
+@using OnlineStore.Domain.Entities
+@{
+    ViewData["Title"] = "Роли";
+}
+@model List<RoleDto>
+
+
+<div class="role-container">
+    @foreach (var role in Model)
+    {
+        <div class="role-card">
+            <div class="role-info">
+                <strong>Id:</strong> @role.Id <br />
+                <strong>Имя:</strong> @role.Name <br />
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .role-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .role-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Распределяет пространство между элементами */
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+        width: 250px; /* Ширина карточки */
+        height: 350px; /* Высота карточки */
+        overflow: hidden; /* Скрывает переполнение */
+    }
+
+    .role-info {
+        margin: 10px 0;
+    }
+</style>

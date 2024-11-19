@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using OnlineStore.Contracts.Users;
 using OnlineStore.Domain.Entities;
+using System.Data.Entity;
 
 namespace OnlineStore.AppServices.Roles.Services
 {
@@ -26,6 +28,21 @@ namespace OnlineStore.AppServices.Roles.Services
         {
             var role = new ApplicationRole { Id = id };
             await _roleManager.DeleteAsync(role);
+        }
+
+        /// <inheritdoc>
+        public List<RoleDto> GetAll()
+        {
+            var roles = _roleManager.Roles.ToList();
+
+            var rolesDto = new List<RoleDto>();
+
+            foreach (var role in roles)
+            {
+                rolesDto.Add(new RoleDto { Name = role.Name, Id = role.Id });
+            }
+
+            return rolesDto;
         }
     }
 }

@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Mediator\Product\Requests\**" />
+    <EmbeddedResource Remove="Mediator\Product\Requests\**" />
+    <None Remove="Mediator\Product\Requests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.4" />
@@ -17,10 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\OnlineStore.Contracts\OnlineStore.Contracts.csproj" />
     <ProjectReference Include="..\OnlineStore.Domain\OnlineStore.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Mediator\Product\Requests\" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnlineStore.AppServices.Mediator.Product.Commands;
 using OnlineStore.AppServices.Product.Services;
-using OnlineStore.AppServices.ProductImage.Services;
 using OnlineStore.Contracts.ProductsDto;
 using OnlineStore.Domain.Entities;
 
@@ -10,10 +11,13 @@ namespace OnlineStore.MVC.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IMediator _mediator;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService,
+            IMediator mediator)
         {
             _productService = productService;
+            _mediator = mediator;
         }
 
         [HttpGet]
@@ -25,8 +29,9 @@ namespace OnlineStore.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(ProductsDto productDto)
         {
-
-            await _productService.AddAsync(productDto);
+            var comand = new AddProductCommand(productDto);
+            await _mediator.Send(comand);
+            //await _productService.AddAsync(productDto);
 
             var products = await _productService.GetAllAsync();
             return View("AllProduct", products);
@@ -42,24 +47,6 @@ namespace OnlineStore.MVC.Controllers
         public async Task<IActionResult> GetProduct(ProductsDto productDto)
         {
             Products prod = await _productService.GetAsync(productDto);
-
-            if (prod != null)
-            {
-                Console.WriteLine();
-                Console.WriteLine($"Id = {prod.Id}, Name = {prod.Name}, Category = {prod.Category}, Image = {prod.Images}");
-
-                foreach (var image in prod.Images)
-                {
-                    Console.WriteLine($"Image = {image}");
-                }
-
-                Console.WriteLine();
-            }
-            else
-            {
-                Console.WriteLine("Товар закончился или не существует");
-            }
-
             return View(prod);
         }
 

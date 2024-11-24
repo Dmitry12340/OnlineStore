@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using OnlineStore.Contracts.Users;
 using OnlineStore.Domain.Entities;
-using System.Data.Entity;
 
 namespace OnlineStore.AppServices.Roles.Services
 {
@@ -26,23 +25,24 @@ namespace OnlineStore.AppServices.Roles.Services
         /// <inheritdoc>
         public async Task DeleteAsync(int id, CancellationToken cancellation)
         {
-            var role = new ApplicationRole { Id = id };
-            await _roleManager.DeleteAsync(role);
+            var role = await _roleManager.FindByIdAsync(id.ToString());
+
+            if(role != null)
+            {
+                await _roleManager.DeleteAsync(role);
+            }
+            else
+            {
+                throw new KeyNotFoundException($"Role with ID {id} not found.");
+            }
         }
 
         /// <inheritdoc>
         public List<RoleDto> GetAll()
         {
-            var roles = _roleManager.Roles.ToList();
-
-            var rolesDto = new List<RoleDto>();
-
-            foreach (var role in roles)
-            {
-                rolesDto.Add(new RoleDto { Name = role.Name, Id = role.Id });
-            }
-
-            return rolesDto;
+            return _roleManager.Roles
+        .Select(role => new RoleDto { Name = role.Name, Id = role.Id })
+        .ToList();
         }
     }
 }

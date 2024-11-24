@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using OnlineStore.AppServices.Authentication.Services;
 using OnlineStore.AppServices.Common.Redis;
+using OnlineStore.AppServices.Mediator.Product.Commands;
+using OnlineStore.AppServices.Mediator.Product.Handlers;
 using OnlineStore.AppServices.Product.Repositories;
 using OnlineStore.AppServices.Product.Services;
 using OnlineStore.AppServices.ProductImage.Repositories;
@@ -34,6 +37,7 @@ namespace OnlineStore.ComponentRegistar
             RegisterRepositories(services, configuration);
             RegisterServices(services);
             RegisterMapper(services, configuration);
+            RegisterMediator(services);
         }
 
         private static void RegisterRepositories(IServiceCollection services, IConfiguration configuration)
@@ -68,10 +72,19 @@ namespace OnlineStore.ComponentRegistar
             var mapperConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new ProductAttributeMappingProfile());
+                mc.AddProfile(new ProductMappingProfile());
             });
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+        }
+
+        public static void RegisterMediator(IServiceCollection services)
+        {
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(OnlineStoreRegistrar).Assembly));
+
+            // Регистрация обработчиков
+            services.AddTransient<IRequestHandler<AddProductCommand>, AddProductCommandHandler>();
         }
     }
 }

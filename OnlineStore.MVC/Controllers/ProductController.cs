@@ -31,10 +31,12 @@ namespace OnlineStore.MVC.Controllers
         {
             var comand = new AddProductCommand(productDto);
             await _mediator.Send(comand);
+
+            return RedirectToAction("Index", "Home");
             //await _productService.AddAsync(productDto);
 
-            var products = await _productService.GetAllAsync();
-            return View("AllProduct", products);
+            //var products = await _productService.GetAllAsync();
+            //return View("AllProduct", products);
         }
 
         [HttpGet]

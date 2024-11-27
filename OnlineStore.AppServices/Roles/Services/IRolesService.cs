@@ -1,5 +1,4 @@
 ﻿using OnlineStore.Contracts.Users;
-using OnlineStore.Domain.Entities;
 
 namespace OnlineStore.AppServices.Roles.Services
 {

@@ -46,12 +46,22 @@
             @if (User?.Identity?.IsAuthenticated == true)
             {
                 <button class="add-to-cart" data-product-id="@product.Id">В корзину</button>
-                @* <button class="delete-product" Delete="@product.Id">Удалить</button> *@
-                <form asp-action="DeleteProduct" asp-controller="Product" method="post">
-                    <input type="hidden" name="id" value="@product.Id" />
-                    <button class="delete-product" type="submit">Удалить</button>
+            }
+            else
+            {
+                <form class="add-to-cart" asp-action="Login" asp-controller="Account" method="get">
+                    <button class="add-to-cart">Корзина</button>
                 </form>
             }
+            @if (User.IsInRole("Admin"))
+            {
+                <form class="delete-product" asp-action="DeleteProduct" asp-controller="Product" method="post" onsubmit="return confirm('Вы уверены, что хотите удалить этот продукт?');">
+                    <input type="hidden" name="id" value="@product.Id" />
+                    <button type="submit" class="delete-product">Удалить</button>
+                </form>
+            }
+
+
         </div>
     }
 </div>
@@ -88,7 +98,6 @@
 
     .product-container {
         display: flex;
-        flex-wrap: wrap;
     }
 
     .product-card {
@@ -100,17 +109,13 @@
         padding: 10px;
         margin: 10px;
         width: 250px; /* Ширина карточки */
-        height: 350px; /* Высота карточки */
+        height: auto; /* Высота карточки */
         overflow: hidden; /* Скрывает переполнение */
     }
 
     .image-slider {
-        /* flex: 1; /* Занимает доступное пространство */
-        /* display: flex;
-                justify-content: center;
-                align-items: center; */
         overflow: hidden;
-        height: 200px;
+        height: auto;
     }
 
         .image-slider img {
@@ -146,7 +151,6 @@
         border-radius: 5px;
         cursor: pointer;
         transition: background-color 0.3s;
-        with: 100%;
     }
 
         .delete-product:hover {

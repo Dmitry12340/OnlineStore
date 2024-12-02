@@ -1,4 +1,6 @@
-﻿namespace OnlineStore.AppServices.Authentication.Services
+﻿using OnlineStore.Domain.Entities;
+
+namespace OnlineStore.AppServices.Authentication.Services
 {
     /// <summary>
     /// Интерфейс сервиса аутентификации пользователя.
@@ -27,5 +29,7 @@
         /// <param name="cancellationToken">Токен отмены операции.</param>
         /// <returns></returns>
         Task<bool> RegisterAsync(string email, string password, CancellationToken cancellationToken);
+
+        public List<ApplicationUser> GetAll(CancellationToken cancellationToken);
     }
 }

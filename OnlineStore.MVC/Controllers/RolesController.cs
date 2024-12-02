@@ -1,22 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineStore.AppServices.Product.Services;
 using OnlineStore.AppServices.Roles.Services;
-using OnlineStore.Domain.Entities;
+using OnlineStore.Contracts.Users;
 
 namespace OnlineStore.MVC.Controllers
 {
     public class RolesController : Controller
     {
         private readonly IRolesService _rolesService;
-        private readonly IProductService _productService;
 
-        public RolesController(IRolesService rolesService,
-            IProductService productService)
+        public RolesController(IRolesService rolesService)
         {
             _rolesService = rolesService;
-            _productService = productService;
         }
         public async Task<IActionResult> Index()
+        {
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult AddRoles()
+        {
+            return View("AddRoles");
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> AddRoles(RoleDto roleDto, CancellationToken cancellation)
+        {
+            await _rolesService.AddAsync(roleDto.Name, cancellation);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllRoles()
         {
             var roles = _rolesService.GetAll();
             foreach (var role in roles)
@@ -25,6 +43,13 @@ namespace OnlineStore.MVC.Controllers
             }
 
             return View(roles);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteRoles([FromHeader]RoleDto roleDto, CancellationToken cancellation)
+        {
+            await _rolesService.DeleteAsync(roleDto.Id, cancellation);
+            return RedirectToAction("GetAllRoles");
         }
     }
 }

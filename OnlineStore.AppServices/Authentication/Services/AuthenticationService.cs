@@ -73,5 +73,15 @@ namespace OnlineStore.AppServices.Authentication.Services
         {
             return _signInManager.SignOutAsync();
         }
+
+        public List<ApplicationUser> GetAll(CancellationToken cancellationToken)
+        {
+            var users = _userManager.Users.ToList();
+            foreach (var user in users)
+            {
+                Console.WriteLine($"Id = {user.Id}, Name = {user.UserName}");
+            }
+            return users;
+        }
     }
 }

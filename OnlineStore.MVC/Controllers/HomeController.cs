@@ -16,16 +16,19 @@ namespace OnlineStore.MVC.Controllers
         private readonly IProductService _productService;
         private readonly IRolesService _rolesService;
         private readonly IUserRolesService _userRolesService;
+        private readonly IAuthenticationService _authenticationService;
 
         public HomeController(ILogger<HomeController> logger, 
             IProductService productService,
             IRolesService rolesService,
-            IUserRolesService userRolesService)
+            IUserRolesService userRolesService,
+            IAuthenticationService authenticationService)
         {
             _logger = logger;
             _productService = productService;
             _rolesService = rolesService;
             _userRolesService = userRolesService;
+            _authenticationService = authenticationService;
         }
 
         CancellationToken cancellation;
@@ -37,6 +40,8 @@ namespace OnlineStore.MVC.Controllers
             //await _rolesService.AddAsync("User", CancellationToken.None);
             //await _userRolesService.AddRoleToUserAsync("Dmitry@mail.ru", "Admin", cancellation);
             //await _userRolesService.RemoveRoleFromUser("Dmitry@mail.ru", "Admin", cancellation);
+
+            _authenticationService.GetAllAsync(cancellation);
 
             var products = await _productService.GetAllAsync();
             return View("AllProduct", products);

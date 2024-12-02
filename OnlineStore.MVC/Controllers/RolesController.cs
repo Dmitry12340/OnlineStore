@@ -15,7 +15,7 @@ namespace OnlineStore.MVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return View();
+            return RedirectToAction("GetAllRoles");
         }
 
 
@@ -30,7 +30,7 @@ namespace OnlineStore.MVC.Controllers
         public async Task<IActionResult> AddRoles(RoleDto roleDto, CancellationToken cancellation)
         {
             await _rolesService.AddAsync(roleDto.Name, cancellation);
-            return RedirectToAction("Index");
+            return RedirectToAction("GetAllRoles");
         }
 
         [HttpGet]

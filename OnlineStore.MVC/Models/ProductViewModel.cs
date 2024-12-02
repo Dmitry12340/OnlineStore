@@ -1,5 +1,4 @@
-﻿using OnlineStore.Domain.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OnlineStore.MVC.Models
 {

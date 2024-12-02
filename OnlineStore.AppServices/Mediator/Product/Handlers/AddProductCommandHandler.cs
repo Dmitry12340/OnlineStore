@@ -8,10 +8,9 @@ namespace OnlineStore.AppServices.Mediator.Product.Handlers
     public class AddProductCommandHandler : IRequestHandler<AddProductCommand>
     {
         private readonly IProductRepository _productRepository;
-        public AddProductCommandHandler(IProductRepository repository)
-        {
+        public AddProductCommandHandler(IProductRepository repository) =>
             _productRepository = repository;
-        }
+
         public async Task Handle(AddProductCommand request, CancellationToken cancellationToken)
         {
             List<ProductImages> productImages = new List<ProductImages>();

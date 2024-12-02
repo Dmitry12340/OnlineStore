@@ -1,43 +1,51 @@
-﻿@using OnlineStore.Contracts.Users
-@using OnlineStore.Domain.Entities
-@{
-    ViewData["Title"] = "Роли";
+﻿@{
+    ViewBag.Title = "Управление ролями";
 }
-@model List<RoleDto>
 
+<h2 class="page-title">Управление ролями</h2>
 
-<div class="role-container">
-    @foreach (var role in Model)
-    {
-        <div class="role-card">
-            <div class="role-info">
-                <strong>Id:</strong> @role.Id <br />
-                <strong>Имя:</strong> @role.Name <br />
-            </div>
-        </div>
-    }
+<div class="button-container">
+    <form action="@Url.Action("AddRoles", "Roles")" method="get">
+        <button type="submit" class="action-button">Добавить роль</button>
+    </form>
+
+    <form action="@Url.Action("GetAllRoles", "Roles")" method="get">
+        <button type="submit" class="action-button">Посмотреть все роли</button>
+    </form>
 </div>
 
 <style>
-    .role-container {
-        display: flex;
-        flex-wrap: wrap;
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4; /* Цвет фона */
+        color: #333; /* Цвет текста */
+        padding: 20px; /* Отступы */
     }
 
-    .role-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between; /* Распределяет пространство между элементами */
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 10px;
-        margin: 10px;
-        width: 250px; /* Ширина карточки */
-        height: 350px; /* Высота карточки */
-        overflow: hidden; /* Скрывает переполнение */
+    .page-title {
+        text-align: center; /* Центрируем заголовок */
+        font-size: 2em; /* Размер заголовка */
+        margin-bottom: 20px; /* Отступ снизу заголовка */
     }
 
-    .role-info {
-        margin: 10px 0;
+    .button-container {
+        display: flex; /* Используем flexbox для размещения кнопок */
+        justify-content: center; /* Центрация кнопок */
+        gap: 20px; /* Пробел между кнопками */
     }
+
+    .action-button {
+        background-color: #007bff; /* Цвет кнопки */
+        color: white; /* Цвет текста на кнопке */
+        border: none; /* Без границ */
+        border-radius: 5px; /* Закругление углов кнопки */
+        padding: 10px 20px; /* Отступы внутри кнопки */
+        font-size: 1.2em; /* Размер шрифта на кнопке */
+        cursor: pointer; /* Указатель при наведении */
+        transition: background-color 0.3s; /* Плавный переход цвета фона */
+    }
+
+        .action-button:hover {
+            background-color: #0056b3; /* Цвет кнопки при наведении */
+        }
 </style>

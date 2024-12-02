@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using OnlineStore.Contracts.Users;
 using OnlineStore.Domain.Entities;
 
 namespace OnlineStore.AppServices.Authentication.Services
@@ -10,24 +11,38 @@ namespace OnlineStore.AppServices.Authentication.Services
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
 
 
-        public AuthenticationService(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public AuthenticationService(SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager, 
+            RoleManager<ApplicationRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         /// <inheritdoc>
         public async Task<bool> RegisterAsync(string email, string password, CancellationToken cancellationToken)
         {
+            //Создаем пользователя
             var user = new ApplicationUser
             {
                 UserName = email,
                 Email = email,
             };
 
+            //Добавляем пользователя в базу данных
             var registeredUser = await _userManager.CreateAsync(user, password);
+
+
+            //Проверяем наличие роли User
+            if(await _roleManager.RoleExistsAsync("User"))
+            {
+                //Наделяем правами User нового пользователя
+                await _userManager.AddToRoleAsync(user, "User");
+            }
 
             return registeredUser != null;
         }

@@ -30,6 +30,11 @@ namespace OnlineStore.AppServices.Authentication.Services
         /// <returns></returns>
         Task<bool> RegisterAsync(string email, string password, CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Получение списка пользователей.
+        /// </summary>
+        /// <param name="cancellationToken">Токен отмены операции.</param>
+        /// <returns>Список пользователей.</returns>
         public List<ApplicationUser> GetAll(CancellationToken cancellationToken);
     }
 }

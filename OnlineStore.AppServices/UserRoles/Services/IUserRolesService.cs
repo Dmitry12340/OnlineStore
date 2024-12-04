@@ -26,5 +26,13 @@ namespace OnlineStore.AppServices.UserRoles.Services
         /// <param name="roleName">Имя роли.</param>
         /// <param name="cancellationToken">Токен отмены.</param>
         Task RemoveRoleFromUser(string email, string roleName, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Получить роли пользователя
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
+        /// <param name="cancellation">Список имен ролей пользователя</param>
+        /// <returns></returns>
+        Task<IList<string>> GetUserRoles(int id, CancellationToken cancellation);
     }
 }

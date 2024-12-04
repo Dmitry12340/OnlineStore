@@ -74,6 +74,7 @@ namespace OnlineStore.AppServices.Authentication.Services
             return _signInManager.SignOutAsync();
         }
 
+        /// <inheritdoc>
         public List<ApplicationUser> GetAll(CancellationToken cancellationToken)
         {
             var users = _userManager.Users.ToList();
